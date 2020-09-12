@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+         <div class="page-content">
+
+                <div class="container-fluid">
+   <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Bordered Table</h5>
+                                    <p>Add <code>.table-bordered</code> for borders on all sides of the table and cells.</p>
+                                    <div class="table-container"><form action="" method="post">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">name</th>
+                                                    <th scope="col">week{{ week }}</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for foo in Stud %}
+                                                {% for id,doo in TakeAttendanceList.items%}
+                                                     {% if id == foo.Student.StudentID and doo == 'YES' %}
+                                                    <tr>     <th scope="row">({{ foo.Student.StudentID }}) {{ foo.Student.StudentFname }} {{ foo.Student.StudentSname }}</th>
+                                                        <td><span class="badge badge-secondary">TAKEN</span> <input checked   type="checkbox" name="{{ foo.Student.StudentID }}">
+
+                                                          </tr>
+
+                                        {% endif %}
+
+                                    {% endfor %}
+
+                                                {% for id,doo in NoTakeAttendanceList.items%}
+                                                     {% if id == foo.Student.StudentID and doo == 'NO' %}
+                                                    <tr>     <th scope="row">({{ foo.Student.StudentID }}) {{ foo.Student.StudentFname }} {{ foo.Student.StudentSname }}</th>
+                                                        <td><span class="badge badge-secondary">ABSENT</span> <input    type="checkbox" name="{{ foo.Student.StudentID }}"></td>
+
+                                                          </tr>
+
+                                        {% endif %}
+
+                                    {% endfor %}
+
+                                                     {% endfor %}
+
+                                            </tbody>
+
+
+                                        </table><button type="submit" class="btn btn-secondary btn-lg btn-block waves-effect waves-light">Block level button</button></form>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+                            </div>
+
+{% endblock %}

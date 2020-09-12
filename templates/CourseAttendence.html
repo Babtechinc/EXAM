@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+         <div class="page-content">
+
+                <div class="container-fluid">
+   <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Bordered Table</h5>
+                                    <p>Add <code>.table-bordered</code> for borders on all sides of the table and cells.</p>
+                                    <div class="table-container"><form action="" method="post">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">name</th>
+                                                    <th scope="col">week{{ week }}</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for foo in Stud %}
+
+
+                                                <tr>
+
+
+                                                    <th scope="row">({{ foo.Student.StudentID }}) {{ foo.Student.StudentFname }} {{ foo.Student.StudentSname }}</th>
+                                                    {% csrf_token %}
+
+                                                    <td><input    type="checkbox" name="{{ foo.Student.StudentID }}"></td>
+{#                                                    <td><span class="badge badge-pill badge-success">Success</span>#}
+{#                                   </td>#}
+{#                                                    <td> <span class="badge badge-pill badge-danger">Danger</span></td>#}
+
+
+                                                </tr>
+                                                     {% endfor %}
+
+                                            </tbody>
+
+
+                                        </table><button type="submit" class="btn btn-secondary btn-lg btn-block waves-effect waves-light">Block level button</button></form>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+                            </div>
+
+{% endblock %}

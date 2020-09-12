@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="page-content">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="page-title">Typography</h2>
+                        </div>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    Documentation and examples for Bootstrap typography, including global settings, headings, body text, lists, and more.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xl">
+                            <div class="card">
+                                <div class="card-body">
+                                    Course To Pick From
+                                   <select name="" class="list-group2" multiple="multiple" id="box1">
+                                       {% for foo in courseDB %}
+                                        <option class="list-group-item2" value="{{ foo.id }}">{{ foo.CourseCode }}:
+                                            {{ foo.CourseName }}</option>
+                                       {% endfor %}
+
+
+
+                                                </select>
+                                                    <button id="btn" type="button" class="btn-primary btn-lg btn-block waves-effect waves-light">ADD</button>
+
+                                </div>
+                            </div>
+
+                    </div>
+
+                         <div class="col-xl"><form action="{% url 'CourseRegister' %}" METHOD="post" >
+
+                            <div class="card">
+                                <div class="card-body">
+                                    {% include "partials/_message.html" %}
+                                            {% csrf_token %}
+                                        Course Submitted for Approval
+                                                        <select name="CourseSelect" multiple="multiple" class="list-group2"  id="box2"   >
+
+                                                        </select>
+ <button id="btn1" type="button" class="btn btn-secondary btn-lg btn-block waves-effect waves-light">REMOVE</button>
+
+                                </div>
+                            </div>    <button type="submit" class="btn btn-secondary btn-lg btn-block waves-effect waves-light">SUBMIT FOR REGISTER</button>
+
+ </form>
+                    </div>
+
+                </div>
+
+            </div>
+</div>
+{% endblock %}

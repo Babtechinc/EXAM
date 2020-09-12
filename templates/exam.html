@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exam</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+<link rel="stylesheet" href="https://pagination.js.org/dist/2.1.4/pagination.css"/>
+    <style>
+        .contol-all{
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+<p>swwwefdwdee</p>
+{% for key,val in selectedi.items%}
+<option value="{{ key }}">{{val }}</option>
+{% endfor %}
+<p>tjighn</p>
+<form action="{% url 'examque2'  %}" id="form_id"  method="POST" class="form-control" > {% csrf_token %}
+<div class=".container-fluid">
+    <br>
+    <br>
+    <br>
+
+
+    {% for foo in page_obj  %}
+
+  <div class="row align-items-start contol-all"  id="{{ foo.id }}" {% if foo.id == 5 %} style="display:block" {% endif %}>
+    <div class="col">
+
+        <div class="alert alert-info" role="alert">
+         {{ foo.question }}
+
+            <br>
+            <br>
+            <br>
+      <div class="alert alert-dark" id="tab" role="alert">
+                      <div class="form-check">>
+                      <input class="form-check-input" type="radio" name={{ foo.id }} id="exampleRadios1" value={{ foo.option1 }} >
+                      <label class="form-check-label" for="exampleRadios1">
+                        {{ foo.option1 }}
+                      </label>
+
+                    </div>
+                  <div class="form-check">>
+                              <input class="form-check-input" type="radio" name={{ foo.id }} id="exampleRadios1" value={{ foo.option2 }} >
+                              <label class="form-check-label" for="exampleRadios1">
+                                {{ foo.option2 }}
+                              </label>
+
+                            </div>
+                  <div class="form-check">>
+                              <input class="form-check-input" type="radio" name={{ foo.id }} id="exampleRadios1" value={{ foo.option3 }} >
+                              <label class="form-check-label" for="exampleRadios1">
+                                {{ foo.option3 }}
+                              </label>
+
+                            </div>
+                    <div class="form-check">>
+                      <input class="form-check-input" type="radio" name={{ foo.id }} id="exampleRadios1" value={{ foo.option4 }} >
+                      <label class="form-check-label" for="exampleRadios1">
+                        {{ foo.option4 }}
+                      </label>
+
+                    </div>
+            </div>
+        </div>
+      </div>
+  {% if foo.id == 5 %} <button type="submit" class="btn btn-primary">Done</button> {% endif %}
+    </div>{% endfor %}
+    <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item ">
+      <a class="page-link" href="#"   onclick="MoveBack({{ foo.id }})" >Previous</a>
+    </li>
+      {% for foo in page_obj %}
+       <li class="page-item" ><button class="page-link all-change" id="no{{ foo.id }}"onclick="MoveHere({{ foo.id }})" >{{ foo.id }}</button></li>
+      {% endfor %}
+      <a class="page-link" href="">Next</a>
+    </li>
+  </ul>
+</nav>
+  </div>
+
+
+</form>
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<script src="https://pagination.js.org/dist/2.1.4/pagination.min.js"></script>
+
+<script>
+$(document).ready(function(){
+ Move()
+});
+    function  Move(){
+$.getJSON("/examlist/?format=json", function(result){
+            $.each(result, function (i, f) {
+                            {#$('#list .wrapper').append('<ul><li>Key1: ' + f.Key1 + '</li></ul>');#}
+                console.log(f)
+                        });
+    });
+        }
+        function MoveHere(number) {
+        var change = String(number)
+            var changeFrom = String(number+1)
+            console.log(change)
+             console.log(changeFrom)
+         var show = document.getElementById(change)
+  var divsToHide = document.getElementsByClassName("contol-all");
+      var divsToHideColor = document.getElementsByClassName("all-change");
+
+         //divsToHide is an array
+    for(var i = 0; i < divsToHideColor.length; i++){
+        divsToHideColor[i].style.backgroundColor= 'white'; // depending on what you're doing
+    }
+for(var i = 0; i < divsToHide.length; i++){
+        divsToHide[i].style.display = "none"; // depending on what you're doing
+    }
+    show.style.display = "block";
+    console.log("no"+change)
+    document.getElementById("no"+change).style.backgroundColor= 'red'
+
+        }
+        function MoveBack(number) {
+             var change = String(number)
+            var changeFrom = String(number-1)
+            console.log(changeFrom+change)
+             var hide = document.getElementById(change)
+             var move = document.getElementById(changeFrom)
+            move.style.display = "block";
+             hide.style.display="none"
+
+        }
+{#        $(document).ready(function() {#}
+{#    $('#form_id').submit(function() { // catch the form's submit event#}
+{##}
+{#        $.ajax({ // create an AJAX call...#}
+{#            data: $(this).serialize(), // get the form data#}
+{#            type: $(this).attr('method'), // GET or POST#}
+{#            url: $(this).attr('action'), // the file to call#}
+{##}
+{#            success: function(response) { // on success..#}
+{#                console.log($(this).serialize())#}
+{#                console.log("done")#}
+{##}
+{#                console.log(this.data)#}
+{#            },#}
+{#            error: function(e, x, r) { // on error..#}
+{#                   console.log("why")#}
+{#            }#}
+{#        });#}
+{#        return false;#}
+{#    });#}
+{#})
+;#}
+</script>
+</html>

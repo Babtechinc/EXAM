@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+         <div class="page-content">
+
+                <div class="container-fluid">
+                    {% for foo in week %}
+                        <div class="card">
+                <div class="card-body">
+
+
+
+
+                                    <h5 class="card-title"><center>WEEK {{ foo }}</center></h5>
+
+<a href="{% url 'CourseAttendance' course foo%}" class="w3-button w3-black"><button type="button" class="btn btn-secondary btn-lg btn-block waves-effect waves-light">Block level button</button>
+</a> </div>
+                </div>
+                    {% endfor %}
+                            </div>
+</div>
+{% endblock %}

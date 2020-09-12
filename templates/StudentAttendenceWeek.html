@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+        <div class="page-content">
+
+                <div class="container-fluid">
+   <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Bordered Table</h5>
+                                    <p>Add <code>.table-bordered</code> for borders on all sides of the table and cells.</p>
+                                    <div class="table-container">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col">Week</th>
+                                                    <th scope="col">Form</th>
+                                                    <th scope="col">Submit</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+
+                                        {% for foo in week %}
+
+
+
+                                                <tr>
+
+                                                    <form action="{% url 'StudentAttendanceSubmit' course foo %}" method="post">
+                                                    <th scope="row">Week{{ foo }}</th>
+                                                    {% csrf_token %}
+
+                                                    <td><input    type="checkbox" name="{{ foo}}"></td>
+{#                                                    <td><span class="badge badge-pill badge-success">Success</span>#}
+{#                                   </td>#}
+{#                                                    <td> <span class="badge badge-pill badge-danger">Danger</span></td>#}
+                                                        <td><button type="submit" class="btn btn-secondary btn-lg btn-block waves-effect waves-light">Submit for Attendent</button></td>
+                                                    </form>
+
+                                                </tr>
+{% endfor %}
+
+                                            </tbody>
+
+
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                </div>
+                            </div>
+{% endblock %}

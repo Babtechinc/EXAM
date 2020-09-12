@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+     <div class="page-content">
+
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="page-title">List Group</h2>
+                        </div>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    List groups are a flexible and powerful component for displaying a series of content. Modify and extend them to support just about any content within.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Basic</h5>
+                                    <p>The most basic list group is an unordered list with list items and the proper classes. Build upon it with the options that follow, or with your own CSS as needed.</p>
+                                    <ul class="list-group">
+                                        {% for foo in Sumbitdb %}
+
+
+
+                                        <li class="list-group-item">({{ foo.Student.StudentID }}) {{ foo.Student.StudentFname }} {{ foo.Student.StudentSname }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+ </div> </div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+     <div class="page-content">
+ <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <h2 class="page-title">Course Selected</h2>
+                        </div>
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    Documentation and examples for opt-in styling of tables (given their prevalent use in JavaScript plugins) with Bootstrap.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">Table Head Options</h5>
+                                    <p>Use the modifier classes <code>.thead-light</code> or <code>.thead-dark</code> to make <code>&lt;thead&gt;</code>s appear light or dark gray.</p>
+                                    <div c1lass="table-container">
+                                        <table class="table">
+                                            <thead class="thead-dark">
+                                                <tr>
+                                                    <th scope="col">Course Code</th>
+                                                    <th scope="col">Course Title</th>
+                                                    <th scope="col">TakeAttendence</th>
+
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            {% for foo in Sumbitdb %}
+
+
+
+                                                <tr>
+                                                    <th scope="row">{{ foo.CourseCode.CourseCode }}</th>
+                                                    <td>{{ foo.CourseCode.CourseName }}</td>
+                                                    <td><a href="{% url "StudentAttendanceWeek" foo.CourseCode.CourseCode%}"><button type="button" class="btn btn-dark waves-effect waves-light">Take Attendence</button></a></td>
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+ </div> </div>
+
+{% endblock %}
